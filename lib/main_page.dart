@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'nav_item.dart';
 import 'dummy_page.dart';
+import 'order_page.dart';
 
 class MainPage extends StatelessWidget {
   @override
@@ -37,6 +38,16 @@ class MainPage extends StatelessWidget {
                 MaterialPageRoute(
                     builder: (context) => DummyPage(title: "Peta Lokasi")),
               ),
+            ),
+            NavItem(
+              title: "Order Tiket",
+              icon: Icons.shopping_cart,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => OrderPage()),
+                );
+              },
             ),
           ],
         ),
