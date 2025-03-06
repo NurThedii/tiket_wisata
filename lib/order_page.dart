@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'produk_model.dart';
+import 'order_detail_page.dart';
 
 class OrderPage extends StatelessWidget {
   @override
@@ -14,14 +15,18 @@ class OrderPage extends StatelessWidget {
         itemCount: dummyProducts.length,
         itemBuilder: (context, index) {
           final product = dummyProducts[index];
+
           return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: ListTile(
               contentPadding: EdgeInsets.all(10),
-              leading:
-                  Image.network(product.imageUrl, width: 80, fit: BoxFit.cover),
+              leading: Image.network(
+                product.imageUrl,
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
               title: Text(product.name,
                   style: TextStyle(fontWeight: FontWeight.bold)),
               subtitle: Text(product.description),
@@ -31,10 +36,17 @@ class OrderPage extends StatelessWidget {
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.green),
               ),
               onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => OrderDetailPage(product: product)),
+                );
+
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                      content:
-                          Text("${product.name} ditambahkan ke keranjang!")),
+                    content: Text("${product.name} dipilih!"),
+                    duration: Duration(seconds: 1),
+                  ),
                 );
               },
             ),
